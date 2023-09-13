@@ -15,7 +15,7 @@ class _RadioPageState extends State<RadioPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
@@ -26,14 +26,14 @@ class _RadioPageState extends State<RadioPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, // Center vertically
           children: [
-            Image(
+            const Image(
               fit: BoxFit.contain,
               image: AssetImage('assets/images/radio_image.png'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Text(
+            const Text(
               "   اذاعة القرآن الكريم",
               style: TextStyle(
                 color: Colors.black,
@@ -41,7 +41,7 @@ class _RadioPageState extends State<RadioPage> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Center(
@@ -53,15 +53,15 @@ class _RadioPageState extends State<RadioPage> {
                   mainAxisAlignment:
                   MainAxisAlignment.center, // Center horizontally
                   children: [
-                    IconButton(
+                     IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.skip_previous,
                         color: Color(0xffB7935F),
                         size: 50,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     IconButton(
@@ -72,16 +72,16 @@ class _RadioPageState extends State<RadioPage> {
                       },
                       icon: Icon(
                         isPlaying ? Icons.pause : Icons.play_arrow,
-                        color: Color(0xffB7935F),
+                        color: const Color(0xffB7935F),
                         size: 50,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.skip_next,
                         color: Color(0xffB7935F),
                         size: 50,
