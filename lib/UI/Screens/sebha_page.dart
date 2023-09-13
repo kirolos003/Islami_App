@@ -8,7 +8,7 @@ class TasbeehPage extends StatefulWidget {
 }
 
 class _TasbeehPageState extends State<TasbeehPage> {
-  String ButtonText = 'سبحان الله';
+  String buttonText = 'سبحان الله';
   int counter = 0 ;
   double rotationAngle = 0.0;
 
@@ -17,7 +17,7 @@ class _TasbeehPageState extends State<TasbeehPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
@@ -29,7 +29,7 @@ class _TasbeehPageState extends State<TasbeehPage> {
           children: [
             Transform.scale(
               scale: 1.1,
-              child: Image(
+              child: const Image(
                 fit: BoxFit.contain,
                 image: AssetImage('assets/images/head_sebha_logo.png'),
               ),
@@ -38,41 +38,41 @@ class _TasbeehPageState extends State<TasbeehPage> {
               angle: rotationAngle * (3.141592653589793 / 180),
               child : Transform.scale(
                 scale: 1.15,
-                child: Image(
+                child: const Image(
                   width: 250,
                   image: AssetImage('assets/images/body_sebha_logo.png'),
                   fit: BoxFit.fitHeight,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               "عدد التسبحات",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 25,
                   fontWeight: FontWeight.w600),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
-              padding: EdgeInsets.all(22),
+              padding: const EdgeInsets.all(22),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
-                color: Color(0xffB7935F), // You can set the background color here
+                color: const Color(0xffB7935F), // You can set the background color here
               ),
               child: Text(
                 counter.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 25,
                     fontWeight: FontWeight.w400),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             ElevatedButton(
@@ -80,25 +80,25 @@ class _TasbeehPageState extends State<TasbeehPage> {
                 setState(() {
                   counter++;
                 });
-                  ButtonPressed(text: ButtonText);
+                  ButtonPressed(text: buttonText);
                   if(counter == 33){
                     counter = 0;
                   }
                   rotateImage();
               },
                 child: Text(
-                  ButtonText ,
+                  buttonText ,
                   style: TextStyle(
                     fontSize: 25 ,
                     fontWeight: FontWeight.w400
                   ),
                 ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffB7935F),
+                backgroundColor: const Color(0xffB7935F),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
                 ),
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
               ),
             )
           ],
@@ -110,15 +110,15 @@ class _TasbeehPageState extends State<TasbeehPage> {
   void ButtonPressed({required String text}){
     if(text == 'سبحان الله' && counter == 33){
       setState(() {
-        ButtonText = 'الحمدلله';
+        buttonText = 'الحمدلله';
       });
     }if(text == 'الحمدلله' && counter == 33){
       setState(() {
-        ButtonText = 'الله أكبر';
+        buttonText = 'الله أكبر';
       });
     }if(text == 'الله أكبر' && counter == 33){
       setState(() {
-        ButtonText = 'سبحان الله';
+        buttonText = 'سبحان الله';
       });
     }
   }

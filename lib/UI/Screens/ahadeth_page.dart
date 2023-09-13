@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AhadethPage extends StatelessWidget {
@@ -9,7 +8,7 @@ class AhadethPage extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
@@ -19,17 +18,17 @@ class AhadethPage extends StatelessWidget {
         minimum: const EdgeInsets.all(2),
         child: Column(
           children: [
-            Image(
+            const Image(
               fit: BoxFit.contain,
               image: AssetImage('assets/images/hadeth_logo.png'),
             ),
             Container(
               height: 3,
-              color: Color(0xffB7935F),
+              color: const Color(0xffB7935F),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 7),
-              child: Text(
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+              child: const Text(
                 "الاحاديث",
                 style: TextStyle(
                     color: Colors.black,
@@ -39,9 +38,9 @@ class AhadethPage extends StatelessWidget {
             ),
             Container(
               height: 3,
-              color: Color(0xffB7935F),
+              color: const Color(0xffB7935F),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Expanded(
@@ -50,13 +49,13 @@ class AhadethPage extends StatelessWidget {
                 itemBuilder: (context, index) => Center(
                   child: Text(
                     "الحديث رقم ${index + 1}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 25,
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                   height: 20,
                 ),
                 itemCount: 8,

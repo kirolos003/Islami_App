@@ -8,7 +8,7 @@ class QuranPage extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
@@ -18,20 +18,20 @@ class QuranPage extends StatelessWidget {
         minimum: const EdgeInsets.all(2),
         child: Column(
           children: [
-            Image(
+            const Image(
               image: AssetImage('assets/images/qur2an_screen_logo.png'),
               height: 200,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               height: 3,
-              color: Color(0xffB7935F),
+              color: const Color(0xffB7935F),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 7),
-              child: Row(
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+              child: const Row(
                 children: [
                   Text(
                     "عدد الآيات",
@@ -55,17 +55,17 @@ class QuranPage extends StatelessWidget {
             ),
             Container(
               height: 3,
-              color: Color(0xffB7935F),
+              color: const Color(0xffB7935F),
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 50, vertical: 7),
+                margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
                 child: Column(
                   children: [
                     Expanded(
                       child: ListView.separated(
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => Row(
+                        itemBuilder: (context, index) => const Row(
                           children: [
                             Text(
                               "286",
@@ -86,7 +86,7 @@ class QuranPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                           height: 20,
                         ),
                         itemCount: 8,

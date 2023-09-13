@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("اسلامي" , style: TextStyle(
+        title: const Text("اسلامي" , style: TextStyle(
           color: Colors.black,
           fontSize: 30 ,
           fontWeight: FontWeight.w700
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: bottomScreens[currentIndex],
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(canvasColor: Color(0xffb08f5d)),
+        data: Theme.of(context).copyWith(canvasColor: const Color(0xffb08f5d)),
         child: BottomNavigationBar(
           currentIndex: currentIndex,
           items: [
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (index) {
             changeBottomNav(index);
           },
-          selectedItemColor: Color(0xff252525),
+          selectedItemColor: const Color(0xff252525),
           showSelectedLabels: true,
           showUnselectedLabels: true,
         ),
