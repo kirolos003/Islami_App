@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class RadioPage extends StatefulWidget {
   const RadioPage({Key? key}) : super(key: key);
@@ -12,12 +14,13 @@ class _RadioPageState extends State<RadioPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppProvider provider = Provider.of<AppProvider>(context);
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/default_bg.png'),
+          image: provider.appTheme == ThemeMode.dark ? AssetImage('assets/images/dark_bg.png') : AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
         ),
       ),
@@ -26,19 +29,19 @@ class _RadioPageState extends State<RadioPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, // Center vertically
           children: [
-            const Image(
-              fit: BoxFit.contain,
-              image: AssetImage('assets/images/radio_image.png'),
+            Center(
+              child: const Image(
+                fit: BoxFit.contain,
+                image: AssetImage('assets/images/radio_image.png'),
+              ),
             ),
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              "   اذاعة القرآن الكريم",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
+            Center(
+              child: Text(
+                "اذاعة القرآن الكريم",
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
             const SizedBox(
@@ -51,9 +54,9 @@ class _RadioPageState extends State<RadioPage> {
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisAlignment:
-                  MainAxisAlignment.center, // Center horizontally
+                      MainAxisAlignment.center, // Center horizontally
                   children: [
-                     IconButton(
+                    IconButton(
                       onPressed: () {},
                       icon: const Icon(
                         Icons.skip_previous,

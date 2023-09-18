@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project/style/themes.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_provider.dart';
 
 class TasbeehPage extends StatefulWidget {
   const TasbeehPage({Key? key}) : super(key: key);
@@ -8,18 +12,21 @@ class TasbeehPage extends StatefulWidget {
 }
 
 class _TasbeehPageState extends State<TasbeehPage> {
+  List<String> buttonTexts = ['سبحان الله', 'الحمد لله', 'الله أكبر'];
+  int counter = 0;
+  int iterator = 0 ;
   String buttonText = 'سبحان الله';
-  int counter = 0 ;
   double rotationAngle = 0.0;
 
   @override
   Widget build(BuildContext context) {
+    AppProvider provider = Provider.of<AppProvider>(context);
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/default_bg.png'),
+          image: provider.appTheme == ThemeMode.dark ? const AssetImage('assets/images/dark_bg.png') : const AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
         ),
       ),
@@ -36,7 +43,7 @@ class _TasbeehPageState extends State<TasbeehPage> {
             ),
             Transform.rotate(
               angle: rotationAngle * (3.141592653589793 / 180),
-              child : Transform.scale(
+              child: Transform.scale(
                 scale: 1.15,
                 child: const Image(
                   width: 250,
@@ -48,12 +55,9 @@ class _TasbeehPageState extends State<TasbeehPage> {
             const SizedBox(
               height: 30,
             ),
-            const Text(
+             Text(
               "عدد التسبحات",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(
               height: 30,
@@ -66,39 +70,33 @@ class _TasbeehPageState extends State<TasbeehPage> {
               ),
               child: Text(
                 counter.toString(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w400),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
             const SizedBox(
               height: 30,
             ),
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 setState(() {
                   counter++;
                 });
-                  ButtonPressed(text: buttonText);
-                  if(counter == 33){
-                    counter = 0;
-                  }
-                  rotateImage();
+                if (counter % 33 == 0) {
+                  changeButtonText();
+                }
+                rotateImage();
               },
-                child: Text(
-                  buttonText ,
-                  style: TextStyle(
-                    fontSize: 25 ,
-                    fontWeight: FontWeight.w400
-                  ),
-                ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffB7935F),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+                padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+              ),
+              child: Text(
+                buttonTexts[iterator],
+                style : Theme.of(context).textTheme.bodySmall,
               ),
             )
           ],
@@ -107,24 +105,21 @@ class _TasbeehPageState extends State<TasbeehPage> {
     );
   }
 
-  void ButtonPressed({required String text}){
-    if(text == 'سبحان الله' && counter == 33){
-      setState(() {
-        buttonText = 'الحمدلله';
-      });
-    }if(text == 'الحمدلله' && counter == 33){
-      setState(() {
-        buttonText = 'الله أكبر';
-      });
-    }if(text == 'الله أكبر' && counter == 33){
-      setState(() {
-        buttonText = 'سبحان الله';
-      });
-    }
+  void changeButtonText() {
+    setState(() {
+      if(iterator != 2){
+        buttonText = buttonTexts[iterator];
+        iterator++;
+      }else {
+        iterator = 0;
+        buttonText = buttonTexts[iterator];
+      }
+    });
   }
+
   void rotateImage() {
     setState(() {
-      rotationAngle += 10.9; // Rotate by 45 degrees (adjust as needed)
+      rotationAngle += 10.9; // Rotate by 10.9 degrees (adjust as needed)
     });
   }
 }

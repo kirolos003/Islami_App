@@ -1,26 +1,37 @@
 import 'dart:async';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:project/Network/local/cache_helper.dart';
+import 'package:project/provider/app_provider.dart';
 import 'package:project/shared/components.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project/style/themes.dart';
+import 'package:provider/provider.dart';
+import 'UI/Screens/home_screen.dart';
 
-import 'UI/Screens/HomeScreen.dart';
-
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  ThemeMode? theme = await CacheHelper.getData(key:'theme');
+  runApp(ChangeNotifierProvider(
+      create: (BuildContext context) => AppProvider(), child: MyApp(theme: theme,)));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  ThemeMode? theme;
+  MyApp({required this.theme});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
+      themeMode: provider.appTheme,
+      darkTheme: darkTheme,
+      theme: lightTheme,
+      locale: Locale(provider.appLanguage),
       home: SplashScreen(),
     );
   }
@@ -36,10 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 2) , (){
-      navigateTo(context , HomeScreen());
+    Timer(const Duration(seconds: 2), () {
+      navigateAndFinish(context, HomeScreen());
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,3 +72,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
