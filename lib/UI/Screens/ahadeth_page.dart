@@ -33,7 +33,9 @@ class AhadethPage extends StatelessWidget {
               color: const Color(0xffB7935F),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+              width: double.infinity,
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(vertical: 7),
               child:  Text(
                 "الاحاديث",
                 style: Theme.of(context).textTheme.bodyMedium,

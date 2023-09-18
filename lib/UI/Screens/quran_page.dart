@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/UI/Screens/detailed_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:project/style/themes.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/app_provider.dart';
@@ -152,8 +151,12 @@ class QuranPage extends StatelessWidget {
               color: const Color(0xffB7935F),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+              width: double.infinity,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              margin: const EdgeInsets.symmetric(vertical: 7),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     AppLocalizations.of(context)!.ayat_number,
