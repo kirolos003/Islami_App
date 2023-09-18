@@ -3,30 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:project/Network/local/cache_helper.dart';
 
 class AppProvider extends ChangeNotifier {
-    String appLanguage = 'en';
+  String isEnglish = 'en';
 
-    void changeAppLanguage(String newLanguage){
-      if(appLanguage == newLanguage){
-        return;
-      }else{
-        appLanguage = newLanguage;
+  void changeAppLanguage({String? fromShared}) {
+    if (fromShared != null) {
+      isEnglish = fromShared;
+    } else {
+      isEnglish = (isEnglish == 'en') ? 'ar' : 'en';
+      CacheHelper.saveData(key: 'isEnglish', value: isEnglish);
+    }
+    notifyListeners();
+  }
+
+
+  bool isDark = false;
+
+    void changeAppTheme({bool? fromShared}) {
+      if (fromShared != null) {
+        isDark = fromShared;
         notifyListeners();
+      }
+      else {
+        isDark = !isDark;
+        CacheHelper.saveData(key: 'isDark', value: isDark).then((value) =>
+            notifyListeners()
+        );
       }
     }
 
-    ThemeMode appTheme = ThemeMode.light;
-
-    void changeAppTheme(ThemeMode newTheme){
-      if(appTheme == newTheme){
-        CacheHelper.saveData(key: 'theme', value: appTheme).then((value) =>
-            notifyListeners()
-        );
-      }else{
-        appTheme = newTheme;
-        CacheHelper.saveData(key: 'theme', value: newTheme).then((value) =>
-            notifyListeners()
-        );
-        notifyListeners();
-      }
-    }
 }

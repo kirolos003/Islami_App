@@ -20,7 +20,7 @@ class _RadioPageState extends State<RadioPage> {
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: provider.appTheme == ThemeMode.dark ? AssetImage('assets/images/dark_bg.png') : AssetImage('assets/images/default_bg.png'),
+          image: provider.isDark ? AssetImage('assets/images/dark_bg.png') : AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
         ),
       ),

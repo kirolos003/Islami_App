@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project/Network/local/cache_helper.dart';
 import 'package:project/provider/app_provider.dart';
@@ -12,14 +11,17 @@ import 'UI/Screens/home_screen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  ThemeMode? theme = await CacheHelper.getData(key:'theme');
+  bool? isDark = await CacheHelper.getData(key:'isDark');
+  String? isEnglish = await CacheHelper.getData(key:'isEnglish');
   runApp(ChangeNotifierProvider(
-      create: (BuildContext context) => AppProvider(), child: MyApp(theme: theme,)));
-}
+      create: (BuildContext context) => AppProvider()..changeAppTheme(fromShared: isDark)..changeAppLanguage(fromShared: isEnglish), child: MyApp(isDark: isDark , isEnglish : isEnglish)));
+  }
+
 
 class MyApp extends StatelessWidget {
-  ThemeMode? theme;
-  MyApp({required this.theme});
+  final bool? isDark;
+  final String? isEnglish;
+  MyApp({required this.isDark , required this.isEnglish});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,10 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      themeMode: provider.appTheme,
+      themeMode: provider.isDark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: darkTheme,
       theme: lightTheme,
-      locale: Locale(provider.appLanguage),
+      locale: Locale(provider.isEnglish  == 'en' ? 'en' : 'ar'),
       home: SplashScreen(),
     );
   }
@@ -54,16 +56,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return Scaffold(
       body: Center(
         child: Column(
           children: [
             Expanded(
               child: Image.asset(
-                'assets/images/splash.png',
+                provider.isDark ?
+                'assets/images/splash_dark – 1.png' : 'assets/images/splash.png',
                 width: double.infinity,
-                height: double.infinity, // Set the height to fill the screen
-                fit: BoxFit.cover, // Optional: Adjust the image's fit as needed
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
             )
           ],

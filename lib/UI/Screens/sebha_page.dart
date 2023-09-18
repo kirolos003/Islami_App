@@ -26,7 +26,7 @@ class _TasbeehPageState extends State<TasbeehPage> {
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: provider.appTheme == ThemeMode.dark ? const AssetImage('assets/images/dark_bg.png') : const AssetImage('assets/images/default_bg.png'),
+          image: provider.isDark ? const AssetImage('assets/images/dark_bg.png') : const AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
         ),
       ),

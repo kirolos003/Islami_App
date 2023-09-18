@@ -21,7 +21,7 @@ class _RadioPageState extends State<SettingsScreen> {
       height: MediaQuery.of(context).size.height,
       decoration:  BoxDecoration(
         image: DecorationImage(
-          image: provider.appTheme == ThemeMode.dark ? AssetImage('assets/images/dark_bg.png') : AssetImage('assets/images/default_bg.png'),
+          image: provider.isDark ? AssetImage('assets/images/dark_bg.png') : AssetImage('assets/images/default_bg.png'),
           fit: BoxFit.fill,
         ),
       ),
@@ -57,7 +57,7 @@ class _RadioPageState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context)!.english ,
+                      Text(provider.isEnglish == 'en' ? AppLocalizations.of(context)!.english : AppLocalizations.of(context)!.arabic ,
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       Icon(Icons.arrow_drop_down_outlined)
@@ -86,7 +86,7 @@ class _RadioPageState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context)!.light ,
+                      Text(provider.isDark ? AppLocalizations.of(context)!.dark : AppLocalizations.of(context)!.light ,
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       Icon(Icons.arrow_drop_down_outlined)
@@ -123,11 +123,11 @@ class LangugeBottomSheet extends StatelessWidget{
         children: [
           InkWell(
             onTap: (){
-              provider.changeAppLanguage('en');
+              provider.changeAppLanguage();
             },
             child: Text(AppLocalizations.of(context)!.english ,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: provider.appTheme == ThemeMode.dark ? Colors.black :  Colors.black,
+                color: provider.isDark ? Colors.black :  Colors.black,
               ),
             ),
           ),
@@ -136,11 +136,11 @@ class LangugeBottomSheet extends StatelessWidget{
           ),
           InkWell(
             onTap: (){
-              provider.changeAppLanguage('ar');
+              provider.changeAppLanguage();
             },
             child: Text(AppLocalizations.of(context)!.arabic ,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-    color: provider.appTheme == ThemeMode.dark ? Colors.black :  Colors.black,
+                color: provider.isDark ? Colors.black : Colors.black,
     ),
             ),
           ),
@@ -161,11 +161,11 @@ class ThemeBottomSheet extends StatelessWidget{
         children: [
           InkWell(
             onTap: (){
-              provider.changeAppTheme(ThemeMode.light);
+              provider.changeAppTheme();
             },
             child: Text(AppLocalizations.of(context)!.light ,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: provider.appTheme == ThemeMode.dark ? Colors.black :  Colors.black,
+                color: provider.isDark ? Colors.black :  Colors.black,
               ),
             ),
           ),
@@ -174,11 +174,11 @@ class ThemeBottomSheet extends StatelessWidget{
           ),
           InkWell(
             onTap: (){
-              provider.changeAppTheme(ThemeMode.dark);
+              provider.changeAppTheme();
             },
             child: Text(AppLocalizations.of(context)!.dark ,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: provider.appTheme == ThemeMode.dark ? Colors.black :  Colors.black,
+                color: provider.isDark ? Colors.black :  Colors.black,
               ),
             ),
           ),

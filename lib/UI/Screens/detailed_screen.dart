@@ -36,7 +36,7 @@ class _SuraDetailsScreenState extends State<DetailsScreen> {
       body: Container(
         decoration: BoxDecoration(
           image:  DecorationImage(
-            image: provider.appTheme == ThemeMode.dark ? const AssetImage('assets/images/dark_bg.png') : const AssetImage('assets/images/default_bg.png'),
+            image:provider.isDark ? const AssetImage('assets/images/dark_bg.png') : const AssetImage('assets/images/default_bg.png'),
             fit: BoxFit.fill,
           ),
         ),
@@ -49,14 +49,14 @@ class _SuraDetailsScreenState extends State<DetailsScreen> {
                   itemBuilder: ((context, index) {
                     return Container(
                       decoration: BoxDecoration(
-                        color: provider.appTheme == ThemeMode.dark ? Color(0xff141A2E) : Color(0xffF8F8F8)
+                        color: provider.isDark ? Color(0xff141A2E) : Color(0xffF8F8F8)
                       ),
                       padding: const EdgeInsets.all(20),
                       child: Text(
                         listt[index],
                         textAlign: TextAlign.end,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: provider.appTheme == ThemeMode.dark ? Color(0xffFACC1D) :  Colors.black,
+                          color: provider.isDark ? Color(0xffFACC1D) :  Colors.black,
                         ),
                       ),
                     );
